@@ -2,6 +2,7 @@ package dev.enblng.api.services.impl;
 
 import dev.enblng.api.dto.CommentTO;
 import dev.enblng.api.entities.CommentEntity;
+import dev.enblng.api.mappers.CommentMapper;
 import dev.enblng.api.repositories.CommentRepository;
 import dev.enblng.api.services.CommentService;
 import org.modelmapper.ModelMapper;
@@ -17,27 +18,31 @@ import java.util.stream.Collectors;
 @Service
 public class CommentServiceImpl implements CommentService {
 
-    private final ModelMapper modelMapper;
     private final CommentRepository commentRepository;
+    private final CommentMapper commentMapper;
 
-    public CommentServiceImpl(final ModelMapper modelMapper, final CommentRepository commentRepository) {
-        this.modelMapper = modelMapper;
+    public CommentServiceImpl(
+            final ModelMapper modelMapper,
+            final CommentRepository commentRepository,
+            final CommentMapper commentMapper
+    ) {
+        this.commentMapper = commentMapper;
         this.commentRepository = commentRepository;
     }
 
     @Override
+    @Transactional
     public CommentTO save(final CommentTO comment) {
-        final CommentEntity entity = modelMapper.map(comment, CommentEntity.class);
+        final CommentEntity entity = commentMapper.toEntity(comment);
         entity.setId(UUID.randomUUID());
-        return modelMapper.map(commentRepository.save(entity), CommentTO.CommentTOBuilder.class).build();
+        return commentMapper.toTransferObject(commentRepository.save(entity));
     }
 
     @Override
     @Transactional
     public List<CommentTO> getByPostId(final UUID id, final Pageable pageable) {
         return commentRepository.findAllByPostIdOrderByCreationTime(id, pageable)
-                .map(commentEntity -> modelMapper.map(commentEntity,
-                        CommentTO.CommentTOBuilder.class).build())
+                .map(commentMapper::toTransferObject)
                 .collect(Collectors.toList());
     }
 

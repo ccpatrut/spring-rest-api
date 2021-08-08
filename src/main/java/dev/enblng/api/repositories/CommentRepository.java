@@ -25,5 +25,5 @@ public interface CommentRepository extends BlogRepository<CommentEntity, UUID> {
                       final UUID id);
 
 
-    int deleteById(UUID id);
+    void deleteById(final UUID id);
 }

@@ -26,11 +26,11 @@ public class CommentTO {
     @Size(min = 5, max = 255)
     String title;
 
-    @ApiModelProperty(position = 2, value = ONLY_FOR_GET_MESSAGE)
+    @ApiModelProperty(position = 2, value = ONLY_FOR_GET_MESSAGE, example = "George")
     @NotNull
     String author;
 
-    @ApiModelProperty(position = 3, required = true)
+    @ApiModelProperty(position = 3, required = true, example = "Hello hello")
     @Size(min = 10)
     @NotNull
     String content;
@@ -38,8 +38,6 @@ public class CommentTO {
     @ApiModelProperty(position = 5, value = ONLY_FOR_GET_MESSAGE)
     String updateTime;
 
-    @ApiModelProperty(position = 4, value = ONLY_FOR_GET_MESSAGE)
-    String creationTime;
 
     @ApiModelProperty(position = 6, value = FOREIGN_KEY_MESSAGE)
     UUID postId;
@@ -50,10 +48,9 @@ public class CommentTO {
                                        final String author,
                                        final String content,
                                        final String updateTime,
-                                       final String creationTime,
                                        final UUID postId
     ) {
-        return new CommentTO(id, title, author, content, updateTime, creationTime, postId);
+        return new CommentTO(id, title, author, content, updateTime, postId);
     }
 
 }

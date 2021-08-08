@@ -22,7 +22,7 @@ public class PostTO {
     @ApiModelProperty(value = UUID_MESSAGE)
     UUID id;
 
-    @ApiModelProperty(position = 1, required = true)
+    @ApiModelProperty(position = 1, required = true, example = "Hello title")
     @Size(min = 5, max = 255)
     @NotNull
     String title;
@@ -30,7 +30,7 @@ public class PostTO {
     @ApiModelProperty(value = ONLY_FOR_GET_MESSAGE, position = 2)
     String author;
 
-    @ApiModelProperty(position = 3, required = true)
+    @ApiModelProperty(position = 3, required = true, example = "Hello hello")
     @Size(min = 10)
     @NotNull
     String content;
@@ -39,18 +39,13 @@ public class PostTO {
     @Null
     String updateTime;
 
-    @ApiModelProperty(value = ONLY_FOR_GET_MESSAGE, position = 4)
-    @Null
-    String creationTime;
-
     @Builder
     private static PostTO newPostTo(final UUID id,
                                     final String title,
                                     final String author,
                                     final String content,
-                                    final String updateTime,
-                                    final String creationTime
+                                    final String updateTime
     ) {
-        return new PostTO(id, title, author, content, updateTime, creationTime);
+        return new PostTO(id, title, author, content, updateTime);
     }
 }

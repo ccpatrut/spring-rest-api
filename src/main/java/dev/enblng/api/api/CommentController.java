@@ -2,6 +2,7 @@ package dev.enblng.api.api;
 
 import dev.enblng.api.dto.CommentTO;
 import dev.enblng.api.services.CommentService;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -16,6 +17,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping(CommentController.PATH)
+@Api(tags = "Comments")
 @Slf4j
 public class CommentController {
     static final String PATH = "comments";

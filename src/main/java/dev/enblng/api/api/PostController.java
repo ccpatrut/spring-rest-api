@@ -2,6 +2,7 @@ package dev.enblng.api.api;
 
 import dev.enblng.api.dto.PostTO;
 import dev.enblng.api.services.PostService;
+import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping(PostController.PATH)
+@Api(tags = "Posts")
 @Slf4j
 public class PostController {
 
