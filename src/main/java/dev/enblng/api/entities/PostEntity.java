@@ -38,5 +38,4 @@ public class PostEntity {
     @Column(name = "creation_time", nullable = false)
     @CreationTimestamp
     private ZonedDateTime creationTime;
-
 }

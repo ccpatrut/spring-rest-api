@@ -5,7 +5,6 @@ import dev.enblng.api.entities.CommentEntity;
 import dev.enblng.api.mappers.CommentMapper;
 import dev.enblng.api.repositories.CommentRepository;
 import dev.enblng.api.services.CommentService;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +21,6 @@ public class CommentServiceImpl implements CommentService {
     private final CommentMapper commentMapper;
 
     public CommentServiceImpl(
-            final ModelMapper modelMapper,
             final CommentRepository commentRepository,
             final CommentMapper commentMapper
     ) {

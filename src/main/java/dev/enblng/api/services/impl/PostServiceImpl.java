@@ -6,7 +6,6 @@ import dev.enblng.api.mappers.PostMapper;
 import dev.enblng.api.repositories.PostRepository;
 import dev.enblng.api.services.PostService;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -25,9 +24,9 @@ public class PostServiceImpl implements PostService {
     private final PostMapper postMapper;
 
     @Autowired
-    public PostServiceImpl(final ModelMapper modelMapper,
-                           final PostRepository postRepository,
-                           final PostMapper postMapper) {
+    public PostServiceImpl(
+            final PostRepository postRepository,
+            final PostMapper postMapper) {
         this.postRepository = postRepository;
         this.postMapper = postMapper;
     }
