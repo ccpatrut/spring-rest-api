@@ -1,0 +1,18 @@
+version: '3'
+services:
+  api-db:
+    image: postgres:alpine3.14
+    container_name: blog-db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+  pg-admin:
+    container_name: hello
+    image: dpage/pgadmin4:5.5
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=postgres@cpatrut.ro
+      - PGADMIN_DEFAULT_PASSWORD=postgres
+    ports:
+      - "3000:80"
